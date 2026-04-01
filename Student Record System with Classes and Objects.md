@@ -1,6 +1,5 @@
 INPUT CODE
-CPP
-.........
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -80,7 +79,8 @@ int main() {
 
     return 0;
 }
-......
+```
+
 OUTPUT CODE
 
 Enter name: Rahul
