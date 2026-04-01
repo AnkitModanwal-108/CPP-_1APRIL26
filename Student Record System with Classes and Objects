@@ -1,0 +1,102 @@
+INPUT CODE
+#include <iostream>
+using namespace std;
+
+class Student {
+private:
+    int roll;
+    string name;
+    float marks[5];
+
+public:
+    // Constructors
+    Student() { roll = 0; name = "NA"; }
+    Student(int r) { roll = r; name = "Temp"; }
+    Student(int r, string n, float m[]) {
+        roll = r; name = n;
+        for(int i = 0; i < 5; i++) marks[i] = m[i];
+    }
+
+    // Add / Modify
+    void addStudent(int r, string n, float m[]) {
+        roll = r; name = n;
+        for(int i = 0; i < 5; i++) marks[i] = m[i];
+    }
+
+    void modifyStudent() {
+        cout << "Enter name: "; cin >> name;
+        cout << "Enter marks: ";
+        for(int i = 0; i < 5; i++) cin >> marks[i];
+    }
+
+    // Average
+    float calculateAverage() {
+        float sum = 0;
+        for(int i = 0; i < 5; i++) sum += marks[i];
+        return sum / 5;
+    }
+
+    // Display
+    void displayStudent() {
+        cout << "\nRoll: " << roll
+             << "\nName: " << name
+             << "\nAverage: " << calculateAverage() << endl;
+    }
+
+    // Destructor
+    ~Student() {
+        cout << "Deleted Roll: " << roll << endl;
+    }
+};
+
+// Inheritance Example
+class GraduateStudent : public Student {
+    string spec;
+public:
+    void setSpec(string s) { spec = s; }
+    void display() {
+        displayStudent();
+        cout << "Spec: " << spec << endl;
+    }
+};
+
+int main() {
+    float m[5] = {80, 85, 90, 75, 88};
+
+    Student s1(1, "Amit", m);
+    Student s2(2);
+
+    s2.modifyStudent();
+
+    s1.displayStudent();
+    s2.displayStudent();
+
+    GraduateStudent g;
+    g.addStudent(3, "Riya", m);
+    g.setSpec("CS");
+    g.display();
+
+    return 0;
+}
+
+OUTPUT CODE
+
+Enter name: Rahul
+Enter 5 marks: 70 75 80 85 90
+
+Roll: 1
+Name: Amit
+Average: 83.6
+
+Roll: 2
+Name: Rahul
+Average: 80
+
+Roll: 3
+Name: Riya
+Average: 83.6
+Specialization: CS
+
+Deleted Roll: 3
+Deleted Roll: 2
+Deleted Roll: 1
